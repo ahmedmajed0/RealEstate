@@ -1,0 +1,98 @@
+﻿  @model List<VwAgricultural> 
+              
+<!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>Dashboard
+                                    <small>Real estate Admin panel</small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+           
+
+<div class="container-fluid">
+            <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>قائمة الزراعي</h5>
+                            </div>
+                             <div id="alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+                                تم الحذف بنجاح
+                                <button style="float: right;  margin-bottom:5px" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="card-body table-responsive ">
+                                <a style="float:right;  margin-bottom:5px" asp-controller="Agricultural" asp-action="Add" class="btn btn-info">اضافة</a>
+                                <table class="display" id="basic-1">
+                                    <thead>
+                                    <tr>
+                                        <th>اسم الزراعي</th>
+                                        <th>انواع الزراعات</th>                                      
+                                        <th>السعر</th>
+                                        <th>المساحة</th>  
+                                        <th>الغرض</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        @item.EstateTitle
+                                                        @*<img src="~/Admin/assets/images/electronics/product/12.jpg" alt="" class="img-fluid img-30 mr-2 blur-up lazyloaded">*@
+                                                    </div>
+                                                </td>
+                                                <td>@item.Types</td>
+                                                <td>@item.Price</td>
+                                                <td>@item.Area م2</td>
+                                                <td>@item.PurposeName</td>
+                                                <td> <a class="link-edit" asp-controller="Agricultural" asp-action="Add" asp-route-id="@item.AgrculturalId"><i 
+                                                    style="    color: green;
+                                                    font-size: 18px;
+                                                    transition: .4s;
+                                                    cursor: pointer;
+                                                    padding-right: 3px;" class="fa-solid  fa-pen-to-square"></i></a> 
+
+                                                    <i style="    color: rgb(197, 3, 3);
+                                                    font-size: 18px;
+                                                    transition: .4s;
+                                                    cursor: pointer;" data-id="@item.AgrculturalId" class="fa-solid js-delete2 fa-trash"></i></td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+             </div>
+</div>
+
+@section Styles{
+        <!-- Datatables css-->
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/css/datatables.css">
+}
+
+@section Scripts{
+    <!-- Datatable js-->
+    <script src="~/Modules/DeleteResidential.js"></script>
+    <script src="~/Admin/assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Admin/assets/js/datatables/custom-basic.js"></script>
+}

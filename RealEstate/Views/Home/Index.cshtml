@@ -1,0 +1,317 @@
+﻿@model HomePageVwModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<!-- header section starts  -->
+
+@if(Model.Ads != null) {
+    <div id="ads" style="width:100%;">
+        <img style="width:100%; height: auto;" src="@string.Format("/Uploads/{0}",@Model.Ads.ImageName)" alt="" />
+
+    </div>
+}
+
+<header id="header">
+
+
+    <a style="text-decoration:none; margin-top:-4px" asp-controller="Home" asp-action="Index" class="logo">  <img src="~/images/logoo.jpeg" alt="logo" width="27" />   <span>شمس</span>  تبوك للخدمات<span> العقارية</span> </a>
+
+    <nav class="navbar">
+        <a asp-controller="Home" asp-action="Index">الرئيسية</a>
+        <a href="#services">الخدمات</a>
+        <a href="#featured">العروض</a>
+        <a href="#agents">فريق العمل</a>
+        <a href="#contact">التواصل</a>
+    </nav>
+
+    <div class="icons">
+        <div id="menu-bars" class="fas fa-bars"></div>
+@*        <a href="#" class="fas fa-user"></a>*@
+    </div>
+
+</header>
+
+<!-- header section ends -->
+
+
+
+<!-- home section starts  -->
+
+
+
+<section class="home" id="home">
+
+    <form asp-controller="Home" asp-action="Search" method="post" role="form">
+
+        <h3>ابحث عن عقارك المثالي</h3>
+
+        <div class="buttons-container">
+            <a href="#" class="btn">تصنيف العقار</a>
+            <a href="#" class="btn">نوع العقار</a>
+            <a href="#" class="btn">الغرض</a>
+        </div>
+
+        <div class="inputBox">
+            <select asp-for="ClassificationId" id="classification"  asp-items="@(new SelectList(Model.classifications, "ClassificationId", "Classification"))" >
+                <option value = ""> </option>
+  
+            </select>
+
+            
+            <select asp-for="SubClassificationId" id="sub" asp-items="@(new SelectList(Model.Subclassifications, "SubClaId", "Name"))">
+
+            </select>
+            
+            <select asp-for="PurposeId"  asp-items="@(new SelectList(Model.AllPurposese, "PurposeId", "PurposeName"))">
+
+            </select>
+        </div>
+        <div>
+            <span asp-validation-for="ClassificationId" style="color:red; font-size:17px"></span> <br>
+            <span asp-validation-for="SubClassificationId" style="color:red; font-size:17px"></span>
+        </div>
+
+
+
+        <input type="submit" value="بحث" class="btn btn2">
+
+    </form>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- services section starts  -->
+
+<section class="services" id="services">
+
+    <h1 class="heading"> جميع <span>خدماتنا</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/s-1.png" alt="">
+            <h3>بيع العقارات</h3>
+        </div>
+        <div class="box">
+            <img src="images/s-3.png" alt="">
+            <h3>تقييم العقارات</h3>
+            <a href="https://api.whatsapp.com/send/?phone=966555379809&text&type=phone_number&app_absent=0" class="btn">تواصل معنا</a>
+        </div>
+
+        <div class="box">
+            <img src="images/s-1.png" alt="">
+            <h3>تأجير العقارات</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/s-2.png" alt="">
+            <h3>شراء العقارات</h3>
+        </div>
+
+
+        <div class="box">
+            <img src="images/s-3.png" alt="">
+            <h3>تسويق العقارات</h3>
+            <a href="https://api.whatsapp.com/send/?phone=966555379809&text&type=phone_number&app_absent=0" class="btn">تواصل معنا</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- services section ends -->
+
+<!-- featured section starts  -->
+
+<section class="featured" id="featured">
+
+    <h1 class="heading"> <span>العروض </span></h1>
+
+    <div class="box-container">
+
+
+        @if(Model.listResidential.Count == 0 && Model.listAgricultural.Count == 0 && Model.listCommercial.Count == 0 && Model.listIndustrial.Count == 0)
+        {
+            <div style="margin:auto"> <img src="~/images/emj.png" width="90" alt="emoji"> <span style="margin:100px 0px; font-size:70px; color: red;" class="text-danger">لا يوجد عقارات</span></div>
+        }
+
+        @foreach (var item in Model.listResidential)
+        {
+         <div class="box">
+            <div class="image-container">
+                <img src="@string.Format("/Uploads/{0}",item.ImageName)" alt="">
+                <div class="info">
+                    <h3>@item.PurposeName</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="price">
+                    <h3>@item.Price ريال</h3>
+                </div>
+                <div class="location">
+                    <h3>@item.EstateTitle</h3>
+                    <a href="@item.Location"><p >عرض الموقع علي جوجل</p></a>
+                </div>
+                <div class="details">
+                    <h3> <i class="fas fa-expand"></i>المساحة @item.Area  </h3>
+                    <h3> <i class="fas fa-bed"></i> الغرف @item.RoomsNo  </h3>
+                    <h3> <i class="fas fa-bath"></i> دورات المياه @item.Baths </h3>
+                </div>
+                <div class="buttons">
+                    <a href="#contact" class="btn">تواصل معنا</a>
+                    <a asp-controller="EstateDetails" asp-action="Residential" asp-route-id="@item.Residential_Id" class="btn">عرض التفاصيل</a>
+                </div>
+            </div>
+         </div>
+        }
+
+
+        @foreach (var item in Model.listAgricultural)
+        {
+         <div class="box">
+            <div class="image-container">
+                <img src="@string.Format("/Uploads/{0}",item.ImageName)" alt="">
+                <div class="info">
+                    <h3>@item.PurposeName</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="price">
+                    <h3>@item.Price ريال</h3>
+                </div>
+                <div class="location">
+                    <h3>@item.EstateTitle</h3>
+                    <a href="@item.Location"><p >عرض الموقع علي جوجل</p></a>
+                </div>
+                <div class="details">
+                    <h3> <i class="fas fa-expand"></i>المساحة @item.Area  </h3>
+                    <h3> <i class="fas fa-bed"></i> الابراج @item.TowersNo  </h3>
+                </div>
+                <div class="buttons">
+                    <a href="#contact" class="btn">تواصل معنا</a>
+                    <a asp-controller="EstateDetails" asp-action="Agricultural" asp-route-id="@item.Agrcultural_Id" class="btn">عرض التفاصيل</a>
+                </div>
+            </div>
+         </div>
+        }
+
+        @foreach (var item in Model.listCommercial)
+        {
+         <div class="box">
+            <div class="image-container">
+                <img src="@string.Format("/Uploads/{0}",item.ImageName)" alt="">
+                <div class="info">
+                    <h3>@item.PurposeName</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="price">
+                    <h3>@item.Price ريال</h3>
+                </div>
+                <div class="location">
+                    <h3>@item.EstateTitle</h3>
+                    <a href="@item.Location"><p >عرض الموقع علي جوجل</p></a>
+                </div>
+                <div class="details">
+                    <h3> <i class="fas fa-expand"></i>المساحة @item.Area  </h3>
+                    <h3> <i class="fas fa-bath"></i> دورات المياه @item.Baths </h3>
+                </div>
+                <div class="buttons">
+                    <a href="#contact" class="btn">تواصل معنا</a>
+                    <a asp-controller="EstateDetails" asp-action="Commercial" asp-route-id="@item.Commercial_Id" class="btn">عرض التفاصيل</a>
+                </div>
+            </div>
+         </div>
+        }
+
+
+       @foreach (var item in Model.listIndustrial)
+        {
+         <div class="box">
+            <div class="image-container">
+                <img src="@string.Format("/Uploads/{0}",item.ImageName)" alt="">
+                <div class="info">
+                    <h3>@item.PurposeName</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="price">
+                    <h3>@item.Price ريال</h3>
+                </div>
+                <div class="location">
+                    <h3>@item.EstateTitle</h3>
+                    <a href="@item.Location"><p >عرض الموقع علي جوجل</p></a>
+                </div>
+                <div class="details">
+                    <h3> <i class="fas fa-expand"></i>المساحة @item.Area  </h3>
+                </div>
+                <div class="buttons">
+                    <a href="#contact" class="btn">تواصل معنا</a>
+                    <a asp-controller="EstateDetails" asp-action="Industrial" asp-route-id="@item.Industrial_Id" class="btn">عرض التفاصيل</a>
+                </div>
+            </div>
+         </div>
+        }
+
+    </div>
+    
+</section>
+
+<!-- featured section ends -->
+
+
+
+ <!-- agents section starts  -->
+
+<section class="agents" id="agents">
+
+    <h1 class="heading"> فريق <span> العمل</span> </h1>
+
+    <div class="box-container">
+
+        @foreach (var member in Model.listmembers)
+        {
+         <div class="box">
+            @if(@member.Email != null){
+            <a href="mailto:@member.Email" class="fas fa-envelope"></a>
+            }
+@*            <a href="#" class="fas fa-phone"></a>*@
+            <img src="@string.Format("/Uploads/{0}",member.Image)" alt="">
+            <h3>@member.Name</h3>
+            <span>@member.Phone</span>
+@*            <div class="share">
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>*@
+        </div>
+        }
+
+
+
+
+
+    </div>
+
+</section>
+
+<!-- agents section ends -->
+
+
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+     <!-- Custom js for this page -->
+    <script src="~/Modules/ClassificationFilter.js"></script>
+
+    <!-- End custom js for this page -->
+}

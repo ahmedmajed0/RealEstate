@@ -1,0 +1,83 @@
+﻿@model HomePageVwM
+
+      <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>Dashboard
+                                    <small>Real estate Admin panel</small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  <!-- Container-fluid Ends-->
+          
+
+<div class="row">
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-warning card-body">
+                                <div class="media static-top-widget row">
+                                    <div class="icons-widgets col-4">
+                                        <div class="align-self-center text-center"><i data-feather="navigation" class="font-warning"></i></div>
+                                    </div>
+                                    <div class="media-body col-8"><span style="font-weight: bold; font-size:22px" class="m-0">العقارات السكنية</span>
+                                        <h3 class="mb-0"> <span class="counter">@Model.ResidentialNo</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <div class="card o-hidden  widget-cards">
+                            <div class="bg-secondary card-body">
+                                <div class="media static-top-widget row">
+                                    <div class="icons-widgets col-4">
+                                        <div class="align-self-center text-center"><i data-feather="box" class="font-secondary"></i></div>
+                                    </div>
+                                    <div class="media-body col-8"><span style="font-weight: bold; font-size:22px" class="m-0">العقارات الصناعية</span>
+                                        <h3 class="mb-0"><span class="counter">@Model.industrialNo</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-primary card-body">
+                                <div class="media static-top-widget row">
+                                    <div class="icons-widgets col-4">
+                                        <div class="align-self-center text-center"><i data-feather="message-square" class="font-primary"></i></div>
+                                    </div>
+                                    <div class="media-body col-8"><span style="font-weight: bold; font-size:22px" class="m-0">العقارات الزراعية</span>
+                                        <h3 class="mb-0"><span class="counter">@Model.AgriculturalNo</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 xl-50">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-danger card-body">
+                                <div class="media static-top-widget row">
+                                    <div class="icons-widgets col-4">
+                                        <div class="align-self-center text-center"><i data-feather="users" class="font-danger"></i></div>
+                                    </div>
+                                    <div class="media-body col-8"><span style="font-weight: bold; font-size:22px" class="m-0">العقارات التجارية</span>
+                                        <h3 class="mb-0"><span class="counter">@Model.CommercialNo</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,189 @@
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="شمس تبوك للعقارات">
+    <meta name="keywords" content="عقارات, تأجير عقارات, عقارات حي تبوك, شقق, استثمار,">
+    <meta name="author" content="Am">
+    <title>شمس تبوك - لوحة التحكم</title>
+    <!-- Google font-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/css/fontawesome.css">
+
+    <!-- Flag icon-->
+
+
+    @RenderSection("Styles", required:false)
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/css/bootstrap.css">
+
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/css/admin.css">
+</head>
+<body class="rtl">
+
+<!-- page-wrapper Start-->
+<div class="page-wrapper">
+
+    <!-- Page Header Start-->
+    <div class="page-main-header">
+        <div class="main-header-right row">
+            <div class="main-header-left d-lg-none">
+                <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded" src="~/Admin/assets/images/dashboard/multikart-logo.png" alt=""></a></div>
+            </div>
+            <div class="mobile-sidebar">
+                <div class="media-body text-right switch-sm">
+                    <label class="switch"><a href="#"><i id="sidebar-toggle" data-feather="align-left"></i></a></label>
+                </div>
+            </div>
+            <div class="nav-right col">
+                <ul class="nav-menus">
+                    <li>
+                        <form class="form-inline search-form">
+                            <div class="form-group">
+                                <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize-2"></i></a></li>
+
+                    <li class="onhover-dropdown">
+                        <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="~/Admin/assets/images/sun.jpg" alt="header-user">
+                            <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
+                        </div>
+                        <ul class="profile-dropdown onhover-show-div p-20">
+                            <li><a href="~/"><i data-feather="log-out"></i> الي الموقع</a></li>
+                            <li><a href="/LoginUsers/LogOut"><i data-feather="log-out"></i>تسجيل الخروج</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header Ends -->
+
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper">
+
+        <!-- Page Sidebar Start-->
+        <div class="page-sidebar">
+            <div class="main-header-left d-none d-lg-block">
+                <div  class="logo-wrapper p-3 "><h3><a href="index.html">شمس تبوك</a></h3></div>
+            </div>
+            <div class="sidebar custom-scrollbar">
+                <div class="sidebar-user text-center">
+                    <div><img class="img-60 rounded-circle blur-up lazyloaded" src="~/Admin/assets/images/sun.jpg" alt="#">
+                    </div>
+                    <h6 class="mt-3 f-14">مرحبا</h6>
+                    <p>@User.Identity.Name</p>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a class="sidebar-header" asp-area="Admin" asp-controller="Home" asp-action="Index"><i data-feather="home"></i><span>Dashboard</span></a></li>
+
+                    <li><a class="sidebar-header" href=""><i data-feather="dollar-sign"></i><span>فريق العمل</span><i class="fa fa-angle-right pull-right"></i></a>
+                        <ul class="sidebar-submenu">
+                            <li><a asp-area="Admin"  asp-controller="Team" asp-action="GetAll"><i class="fa fa-circle"></i>اعضاء الفريق</a></li>
+                            <li><a asp-area="Admin" asp-controller="Team" asp-action="Add"><i class="fa fa-circle"></i>اضافة عضو جديد</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="sidebar-header" asp-area="Admin"  asp-controller="Ads" asp-action="Add"><i data-feather="dollar-sign"></i><span>الاعلانات</span><i class="fa fa-angle-right pull-right"></i></a>
+
+                    </li>
+                    <li><a class="sidebar-header" href=""><i data-feather="dollar-sign"></i><span>سكني</span><i class="fa fa-angle-right pull-right"></i></a>
+                        <ul class="sidebar-submenu">
+                            <li><a asp-area="Admin"  asp-controller="Residential" asp-action="GetAll"><i class="fa fa-circle"></i>العقارات السكنية</a></li>
+                            <li><a asp-area="Admin" asp-controller="Residential" asp-action="Add"><i class="fa fa-circle"></i>اضافة سكني</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>تجاري</span><i class="fa fa-angle-right pull-right"></i></a>
+                        <ul class="sidebar-submenu">
+                            <li><a asp-area="Admin" asp-controller="Commercial" asp-action="GetAll"><i class="fa fa-circle"></i>العقارات التجارية</a></li>
+                            <li><a asp-area="Admin" asp-controller="Commercial" asp-action="Add"><i class="fa fa-circle"></i>اضافة تجاري </a></li>
+                        </ul>
+                    </li>
+                    <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>زراعي</span><i class="fa fa-angle-right pull-right"></i></a>
+                        <ul class="sidebar-submenu">
+                            <li><a asp-area="Admin" asp-controller="Agricultural" asp-action="GetAll"><i class="fa fa-circle"></i>كل  الزراعي</a></li>
+                            <li><a asp-area="Admin" asp-controller="Agricultural" asp-action="Add"><i class="fa fa-circle"></i>اضافة زراعي </a></li>
+                        </ul>
+                    </li>
+                    <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>صناعي</span><i class="fa fa-angle-right pull-right"></i></a>
+                        <ul class="sidebar-submenu">
+                            <li><a asp-area="Admin" asp-controller="Industrial" asp-action="GetAll"><i class="fa fa-circle"></i>كل الصناعي</a></li>
+                            <li><a asp-area="Admin" asp-controller="Industrial" asp-action="Add"><i class="fa fa-circle"></i>اضافة صناعي </a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+
+
+        <div class="page-body">
+
+
+                @RenderBody()
+
+        </div>
+
+        <!-- footer start-->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 footer-copyright">
+                        <p class="mb-0">Copyright 2022 © All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right mb-0">Hand crafted & made with<i class="fa fa-heart"></i></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end-->
+
+    </div>
+
+</div>
+
+<!-- latest jquery-->
+<script src="~/Admin/assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- Bootstrap js-->
+<script src="~/Admin/assets/js/popper.min.js"></script>
+<script src="~/Admin/assets/js/bootstrap.js"></script>
+
+<!-- feather icon js-->
+<script src="~/Admin/assets/js/icons/feather-icon/feather.min.js"></script>
+<script src="~/Admin/assets/js/icons/feather-icon/feather-icon.js"></script>
+
+<!-- Sidebar jquery-->
+<script src="~/Admin/assets/js/sidebar-menu.js"></script>
+
+    @RenderSection("Scripts", required:false)
+
+<!--Customizer admin-->
+<script src="~/Admin/assets/js/admin-customizer.js"></script>
+
+<!-- lazyload js-->
+<script src="~/Admin/assets/js/lazysizes.min.js"></script>
+
+
+<!--script admin-->
+<script src="~/Admin/assets/js/admin-script.js"></script>
+
+    <!-- JS for notification -->
+    <script src="~/lib/bootbox/bootbox.min.js"></script>
+    <!-- JS for notification  -->
+
+</body>
+</html>

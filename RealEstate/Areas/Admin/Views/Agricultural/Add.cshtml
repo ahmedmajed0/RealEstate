@@ -1,0 +1,170 @@
+﻿ @model AddAgriculturalVwM  
+        
+<!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>Add
+                                    <small>Real estate Admin panel</small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item">صناعي</li>
+                                <li class="breadcrumb-item active">اضافة صناعي</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+
+            <!-- Container-fluid starts-->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>اضافة صناعي</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row product-adding">
+                                    <form asp-controller="Agricultural" asp-action="Add" role="form" method="post" enctype="multipart/form-data" class="needs-validation add-product-form" novalidate="">
+                                    <div class="col-xl-6">
+                                        <div class="add-product">
+                                            <div class="row">
+                                                @if(Model.agricultural == null) {
+                                                <input asp-for="agricultural.AgrculturalId" value="0" type="hidden" />
+                                                }
+                                                else{
+                                                    <input asp-for="agricultural.AgrculturalId" type="hidden" />
+                                                }
+
+                                                @if(Model.agricultural == null || Model.agricultural.AgrculturalId == 0){
+                                                <div class="col-12"><span class="text-danger">@ViewBag.ImageError</span></div>
+                                                <div class="col-xl-6 xl-50 col-sm-5 col-4">
+                                                    <img style="cursor: auto;" id="f-img" src="~/Admin/assets/images/pro3/1.jpg" alt="" class="img-fluid blur-up lazyloaded">
+                                                </div>
+                                                <div style="margin:0px 3px">
+                                                    <ul class="file-upload-product">
+                                                        <li><div class="box-input-file"><input id="img1" name="Files" class="upload" type="file"><i  class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img2" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img3" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img4" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img5" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                    </ul>
+                                                </div>
+                                                <div style="margin:0px 3px">
+                                                    <ul class="file-upload-product">
+                                                        <li><div class="box-input-file"><input id="img6" name="Files" class="upload" type="file"><i  class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img7" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img8" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img9" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img10" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                    </ul>
+                                                </div>
+                                                 <div style="margin:0px 3px">
+                                                    <ul class="file-upload-product">
+                                                        <li><div class="box-input-file"><input id="img11" name="Files" class="upload" type="file"><i  class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img12" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img13" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img14" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                        <li><div class="box-input-file"><input id="img15" name="Files" class="upload" type="file"><i class="fa fa-plus"></i></div></li>
+                                                    </ul>
+                                                </div>
+                                                }
+                                                else{
+                                                   <img style="cursor: auto; margin-bottom:5px" id="f-img" src="@string.Format("/Uploads/{0}",Model.Image)" alt="" class="img-fluid blur-up lazyloaded">
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        
+
+                                                <div class="form-group row">
+                                                    <label  class="col-xl-3 col-sm-4 mb-0">الغرض :</label>
+                                                    <select asp-for="agricultural.PurposeId" asp-items="@(new SelectList(Model.listPurposes, "PurposeId", "PurposeName"))" class="form-control digits col-xl-8 col-sm-7" >
+                                                    </select>
+                                                     <span asp-validation-for="agricultural.PurposeId" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label  class="col-xl-3 col-sm-4 mb-0">نوع العقار :</label>
+                                                    <select asp-for="agricultural.SubClaId" asp-items="@(new SelectList(Model.SubClassifications, "SubClaId", "Name"))" class="form-control digits col-xl-8 col-sm-7" >
+                                                    </select>
+                                                    <span asp-validation-for="agricultural.SubClaId" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label  class="col-xl-3 col-sm-4 mb-0">اسم العقار :</label>
+                                                    <input asp-for="agricultural.EstateTitle" class="form-control col-xl-8 col-sm-7"  type="text" required="">
+                                                    <span asp-validation-for="agricultural.EstateTitle" class="text-danger"></span>
+                                                </div>
+                                                @if(Model.agricultural == null || Model.agricultural.AgrculturalId == 0) {
+                                                <div class="form-group mb-3 row">
+                                                    <label  class="col-xl-3 col-sm-4 mb-0">فيديو  :</label>
+                                                    <input name="vid" class="form-control col-xl-8 col-sm-7"   type="file" >
+                                                </div>
+                                                }else{
+                                                <div class="form-group mb-3 row">
+                                                    <label  class="col-xl-3 col-sm-4 mb-0">اضافة فيديو جديد  :</label>
+                                                    <input name="vid" class="form-control col-xl-8 col-sm-7"   type="file"  >
+                                                    <input asp-for="agricultural.Video" class="form-control col-xl-8 col-sm-7"   type="hidden"  >
+
+                                                </div>
+                                                }
+
+                                                    <div class="form-group mb-3 row">
+                                                        <label  class="col-xl-3 col-sm-4 mb-0">موقع العقار :</label>
+                                                        <input asp-for="agricultural.Location" class="form-control col-xl-8 col-sm-7" placeholder="من فضلك ادخل رابط الموقع google maps"   type="text">
+                                                    </div>
+                                            </div>
+                                            <div class="form">
+                                             <div class="form">
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-sm-4 mb-0">السعر بالريال :</label>
+                                                    <fieldset class="qty-box col-xl-9 col-xl-8 col-sm-7 pl-0">
+                                                        <div class="input-group">
+                                                            <input asp-for="agricultural.Price" style="width:200px" class="form-control col-xl-8 col-sm-7" type="number" min="0">
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-sm-4 mb-0">المساحة(م2) :</label>
+                                                    <fieldset class="qty-box col-xl-9 col-xl-8 col-sm-7 pl-0">
+                                                        <div class="input-group">
+                                                            <input asp-for="agricultural.Area" style="width:200px" class="form-control col-xl-8 col-sm-7" type="number" min="0">
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-xl-3 col-sm-4">الوصف :</label>
+                                                    <div class="col-xl-8 col-sm-7 pl-0 description-sm">
+                                                        <textarea asp-for="agricultural.Description" placeholder=" من فضلك ادحل الوصف"  class="col-xl-8"   rows="4"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="offset-xl-3 offset-sm-4">
+                                                <button type="submit" class="btn btn-primary">اضافة</button>
+                                                <a asp-controller="Agricultural" asp-action="GetAll" class="btn btn-light">تجاهل</a>
+                                            </div>
+                                        
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+
+<script src="~/Modules/AddImages.js"></script>
+}

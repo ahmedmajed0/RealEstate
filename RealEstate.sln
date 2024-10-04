@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate", "RealEstate\RealEstate.csproj", "{69172810-7E91-404A-9F84-9E74C6EF097F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domains", "Domains\Domains.csproj", "{ABBABE27-03BD-4146-A27D-8B92FF53CDDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bl", "Bl\Bl.csproj", "{9D1F626E-0F47-4C80-A4C8-D5C4D219A695}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69172810-7E91-404A-9F84-9E74C6EF097F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69172810-7E91-404A-9F84-9E74C6EF097F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69172810-7E91-404A-9F84-9E74C6EF097F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69172810-7E91-404A-9F84-9E74C6EF097F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABBABE27-03BD-4146-A27D-8B92FF53CDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABBABE27-03BD-4146-A27D-8B92FF53CDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABBABE27-03BD-4146-A27D-8B92FF53CDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABBABE27-03BD-4146-A27D-8B92FF53CDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D1F626E-0F47-4C80-A4C8-D5C4D219A695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D1F626E-0F47-4C80-A4C8-D5C4D219A695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D1F626E-0F47-4C80-A4C8-D5C4D219A695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D1F626E-0F47-4C80-A4C8-D5C4D219A695}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB753797-D22D-4D4D-B10C-A24638789FEE}
+	EndGlobalSection
+EndGlobal

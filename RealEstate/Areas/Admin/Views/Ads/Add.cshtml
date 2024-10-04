@@ -1,0 +1,147 @@
+﻿ @model AdsVwModel  
+        
+<!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                                <h3>Add
+                                    <small>Real estate Admin panel</small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item">الاعلانات</li>
+                                <li class="breadcrumb-item active">اضافة اعلان</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+
+            <!-- Container-fluid starts-->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>اضافة اعلان</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row product-adding">
+                                    <form asp-controller="Ads" asp-action="Add" role="form" method="post" enctype="multipart/form-data" class="needs-validation add-product-form" novalidate="">
+                                    <div style="margin-bottom:10px" class="col-xl-10">
+
+                                        @if(@ViewBag.AddSuccess != null || @ViewBag.AddSuccess != "")
+                                        {
+                                        <div id="alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+                                            @ViewBag.AddSuccess
+                                            <button style="float: right;  margin-bottom:5px" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        }
+
+                                        @if(@ViewBag.EditSuccess != null || @ViewBag.EditSuccess != "")
+                                        {
+                                        <div id="alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+                                            @ViewBag.EditSuccess
+                                            <button style="float: right;  margin-bottom:5px" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        }
+
+                                        <div class="add-product">
+                                            <div class="row">
+                                                @if(Model.Ad == null) {
+                                                <input asp-for="Ad.AdId" value="0" type="hidden" />
+                                                }
+                                                else{
+                                                    <input asp-for="Ad.AdId" type="hidden" />
+                                                }
+
+                                                @if(Model.Ad == null || Model.Ad.AdId == 0){
+                                                <div class="col-12"><span class="text-danger">@ViewBag.ImageError</span></div>
+                                                <div class="col-xl-6 xl-50 col-sm-5 col-4">
+                                                    <img style="cursor: auto;" id="f-img" src="~/Admin/assets/images/pro3/1.jpg" width="400" alt="صورة" class="img-fluid blur-up lazyloaded">
+                                                </div>
+                                                <div class="col-xl-3 xl-50 col-sm-6 col-3">
+                                                    <ul class="file-upload-product">
+                                                        <li><div class="box-input-file"><input id="img1" name="Files" class="upload" type="file"><i  class="fa fa-plus"></i></div></li>
+                                                    </ul>
+                                                </div>
+                                                }
+                                                else{
+                                                   <div class="col-xl-6 xl-50 col-sm-5 col-4">
+                                                        <img style="cursor: auto;" id="f-img" src="@string.Format("/Uploads/{0}",Model.Ad.ImageName)" width="300" alt="صورة" class="img-fluid blur-up lazyloaded">
+                                                   </div>
+                                                    <div class="col-xl-3 xl-50 col-sm-6 col-3">
+                                                        <ul class="file-upload-product">
+                                                            <li><div class="box-input-file"><input id="img1" name="Files" class="upload" type="file"><i  class="fa fa-plus"></i></div></li>
+                                                        </ul>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                            <div class="form">
+                                            <div class="offset-xl-3 offset-sm-4">
+                                                <button type="submit" class="btn btn-primary">حفظ</button>
+                                            </div>
+                                        
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="~/Admin/assets/js/touchspin/vendors.min.js"></script>
+<script src="~/Admin/assets/js/touchspin/touchspin.js"></script>
+<script src="~/Admin/assets/js/touchspin/input-groups.min.js"></script>
+
+<!-- form validation js-->
+<script src="assets/js/dashboard/form-validation-custom.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+        document.getElementById("f-img").style.pointerEvents = "none";  
+
+        $('#img1').on('change', function () {
+
+            var file = document.getElementById("img1").files;
+            if(file.length > 0) {
+                var fileReader = new FileReader();
+                fileReader.onload = function (event) {
+                    document.getElementById("f-img").setAttribute("src", event.target.result)
+                };
+
+                fileReader.readAsDataURL(file[0]);
+            }
+
+        
+
+
+            $(this).closest("div").css("background-color", "#FF8084");
+            $(this).next("i").css("color", "#FFF");
+        });
+
+
+
+
+        });
+    </script>
+}

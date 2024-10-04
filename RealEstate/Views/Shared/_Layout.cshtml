@@ -1,0 +1,149 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شمس تبوك</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    @RenderSection("Styles", required:false)
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="~/css/style.css">
+
+</head>
+<body dir="rtl">
+    
+
+
+
+@RenderBody()
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+<h1 class="heading"> <span>تواصل</span> معنا </h1>
+
+<div class="icons-container">
+
+    <div class="icons">
+        <img src="~/images/icon-1.png" alt="">
+        <h3>رقم الجوال</h3>
+        <p>0555379809</p>
+        <p>0502138387</p>
+        <p>0595545101</p>
+    </div>
+
+    <div class="icons">
+        <img src="~/images/icon-2.png" alt="">
+        <h3> البريد الالكترونى</h3>
+        <p>N9809@hotmail.com</p>
+    </div>
+
+     <div class="icons">
+        <img src="~/images/icon-3.png" alt="">
+        <h3>عنوان المكتب</h3>
+        <p>تبوك – حي الريان </p>
+    </div>
+
+</div>
+
+<div id="sa" class="row">
+
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4243.590403945715!2d36.55733208102875!3d28.460437670779374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15a9b3cfdb6c5e2d%3A0x62e8a6a6c81cbe05!2z2YXZg9iq2Kgg2LTZhdizINiq2KjZiNmDINmE2YTYqtmC2YrZitmFINin2YTYudmC2KfYsdmK!5e1!3m2!1sar!2seg!4v1668197944117!5m2!1sar!2seg"   style="border:0; width:100%; height:500px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+</div>
+
+</section>
+
+<!-- contact section ends -->
+
+
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="footer-container">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>فروعنا</h3>
+                <a href="#sa">السعودية</a>
+
+            </div> 
+            
+            <div class="box">
+                <h3>روابط سريعة</h3>
+                <a href="#">الرئيسية</a>
+                <a href="#">الخدمات</a>
+                <a href="#">العروض</a>
+                <a href="#">فريق العمل</a>
+                <a href="#">التواصل</a>
+            </div> 
+
+            <div class="box">
+                <h3>تابعنا</h3>
+                <a style="text-decoration: none; font-size: 23px;" href="https://t.snapchat.com/3Ec7vaE5" class="fab fa-snapchat"></a>
+                <a style="text-decoration: none; font-size: 23px;" href="https://twitter.com/n98098" class="fab fa-twitter"></a>
+                <a style="text-decoration: none; font-size: 23px;" href="https://www.instagram.com/shamstabuk1" class="fab fa-instagram"></a>
+                <a style="text-decoration: none; font-size: 23px;" href="https://api.whatsapp.com/send/?phone=966555379809&text&type=phone_number&app_absent=0" class="fab fa-whatsapp"></a>
+            </div> 
+
+        </div>
+
+        <div class="credit">جميع الحقوق محفوظة   <span> شمس تبوك </span> </div>
+
+    </div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+
+<!-- javascript part  -->
+<script>
+
+let menu = document.querySelector('#menu-bars');
+let navbar = document.querySelector('.navbar');
+let ads = document.querySelector('#ads');
+let header = document.querySelector('#header');
+
+menu.onclick = () =>{
+    navbar.classList.toggle('active');
+    menu.classList.toggle('fa-times');
+}
+
+window.onscroll = () =>{
+    navbar.classList.remove('active');
+    menu.classList.remove('fa-times');
+
+    if(this.scrollY >= 300){
+    ads.classList.add('d-none');
+    header.style = "position: fixed";
+    header.style.top = "0px";
+    }else{
+        ads.classList.remove('d-none');
+        header.style = "position: static";
+        header.style.top = "auto";
+    }
+
+
+}
+
+</script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@RenderSection("Scripts", required:false)
+
+</body>
+</html>

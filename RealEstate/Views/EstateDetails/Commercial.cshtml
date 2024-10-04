@@ -1,0 +1,124 @@
+﻿@model CommercialDetails
+
+
+@{
+    ViewData["Title"] = "Details Page";
+}
+
+
+
+
+<section class="contact" style="  position: relative; margin-top: 100px; background-color: white;" id="contact">
+
+  <div style="width: 50%;">
+    <h1 style="font-size: 40px">@Model.commercial.EstateTitle - @Model.commercial.Price ريال </h1>
+
+    @foreach (var image in Model.images)
+    {
+      <div class="mySlides">
+          <img src="@string.Format("/Uploads/{0}",image.ImageName)" style="width:100%">
+      </div>
+    }
+      
+
+  
+
+  </div>
+
+        
+
+        
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+
+    <div style="width: 49%; position: absolute; left: 0%; bottom: 5%;" >
+
+        @for (var i = 0; i < Model.images.Count; i++)
+        {
+            if(i != 0 && i <= 4){
+                <div class="column">
+                <img class="demo cursor" src="@string.Format("/Uploads/{0}",Model.images[i].ImageName)" style="width:100%" onclick="currentSlide(@i+1)" alt="صورة">
+                </div>
+            }
+            if(i > 4){
+                <div style="display:none" class="column">
+                <img class="demo cursor" src="@string.Format("/Uploads/{0}",Model.images[i].ImageName)" style="width:100%" onclick="currentSlide(@i+1)" alt="صورة">
+                </div>
+            }
+        }
+
+ 
+
+    </div>
+
+
+
+
+</section>
+
+
+
+<section style="width: 30%; " class="agents" id="agents">
+    <h1 style="font-size: 40px">الوصف</h1>
+    <p style="font-size: 18px;">
+      @Model.commercial.Description
+    </p>
+</section>
+
+<section class="contact" id="contact">
+
+    <table class="table table-striped table-bordered">
+
+        <tbody style="font-size: 17px;">
+            <tr>
+                <td ><p style="float:left">@Model.commercial.Area</p>  <p style="float:right; font-weight: bold; ">المساحة</p></td>
+                <td ><p style="float:left">@Model.commercial.Baths</p>  <p style="float:right; font-weight: bold; ">دورات المياه</p></td>
+            </tr>
+            <tr>
+                <td ><p style="float:left">@Model.commercial.DateOfPuplish</p>  <p style="float:right; font-weight: bold; ">تاريخ النشر</p></td>
+                <td ></td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+</section>
+
+<!-- location section starts  -->
+
+@if (Model.commercial.Location != null)
+{
+    <section class="contact" id="contact">
+
+        <h1 class="heading"> <span>الموقع</span> </h1>
+
+
+        <div id="sa"  class="row">
+
+
+
+            <iframe src="@string.Format("{0}",Model.commercial.Location)"   style="border:0; width:100%; height:500px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+
+    </section>
+}
+
+
+@section Styles{
+    
+ <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+
+<link rel="stylesheet" href="~/css/details.css">
+}
+
+
+
+@section Scripts{
+
+     <!-- Custom js for this page -->
+    <script src="~/Modules/details.js"></script>
+
+    <!-- End custom js for this page -->
+}
